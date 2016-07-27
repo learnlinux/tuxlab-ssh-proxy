@@ -20,6 +20,12 @@ var middleware_docker = require('redrouter.middleware.docker');
   Define a RedRouter Instance
 */
 
+var _docker_args = options.docker_conf.docker_args
+
+if (_docker_args.cert != undefined) { _docker_args.cert = fs.readFileSync(options.docker_conf.docker_args.cert); }
+if (_docker_args.key != undefined) { _docker_args.key = fs.readFileSync(options.docker_conf.docker_args.key); }
+if (_docker_args.cacert != undefined) { _docker_args.cacert = fs.readFileSync(options.docker_conf.docker_args.cacert); }
+
 var proxy = new redrouter({
   ssl : {
     key : fs.readFileSync('/root/local/host.key'),
@@ -40,7 +46,10 @@ var proxy = new redrouter({
   ],
   middleware: [
     { constructor: middleware_docker,
-      options: options.docker_conf
+      options: {
+        docker_url : options.docker_conf.docker_url,
+        docker_args : _docker_args
+      }
     }
   ],
   agents: [

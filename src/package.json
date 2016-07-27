@@ -26,7 +26,7 @@
     "redrouter.agent.ssh-proxy": "^0.1.0",
     "redrouter.agent.wetty": "^0.1.1",
     "redrouter.backend.etcd": "^0.1.0",
-    "redrouter.middleware.docker": "^0.1.2",
+    "redrouter.middleware.docker": "^0.1.0",
     "redrouter.resolver.ssh": "^0.1.0"
   }
 }
