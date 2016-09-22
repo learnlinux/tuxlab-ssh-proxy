@@ -28,8 +28,8 @@ if (_docker_args.cacert != undefined) { _docker_args.cacert = fs.readFileSync(op
 
 var proxy = new redrouter({
   ssl : {
-    key : fs.readFileSync('/root/local/host.key'),
-    cert : fs.readFileSync('/root/local/host.key.pub')
+    key : fs.readFileSync('/root/host.pem'),
+    cert : fs.readFileSync('/root/cert.pem')
   },
   backend : {
     constructor: backend_etcd,
