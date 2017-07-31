@@ -12,7 +12,7 @@ var options = JSON.parse(fs.readFileSync('/root/settings.json'));
 // Import RedRouter Components
 var backend_etcd = require('redrouter.backend.etcd');
 var agent_ssh = require('redrouter.agent.ssh-proxy');
-var agent_wetty = require('redrouter.agent.wetty');
+var agent_xterm = require('redrouter.agent.xterm');
 var resolver_ssh = require('redrouter.resolver.ssh');
 var middleware_docker = require('redrouter.middleware.docker');
 
@@ -36,7 +36,8 @@ var proxy = new redrouter({
     options: options.etcd_conf
   },
   resolvers: [
-    { constructor: resolver_ssh,
+    {
+      constructor: resolver_ssh,
       options: {
         defaults: {
           allowed_auth: ['password']
@@ -45,7 +46,8 @@ var proxy = new redrouter({
     }
   ],
   middleware: [
-    { constructor: middleware_docker,
+    {
+      constructor: middleware_docker,
       options: {
         docker_url : options.docker_conf.docker_url,
         docker_args : _docker_args
@@ -54,10 +56,11 @@ var proxy = new redrouter({
   ],
   agents: [
     {
-      constructor: agent_wetty,
-      options: options.wetty_conf
+      constructor: agent_xterm,
+      options: options.xterm_conf
     },
-    { constructor: agent_ssh,
+    {
+      constructor: agent_ssh,
       options: options.ssh_conf
     }
   ]

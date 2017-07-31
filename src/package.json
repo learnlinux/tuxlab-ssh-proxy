@@ -1,6 +1,6 @@
 {
   "name": "tuxlab-ssh-proxy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Reverse Proxy and SSH Bridge in NodeJS",
   "main": "proxy.js",
   "scripts": {
@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/learnlinux/tuxlab-ssh-proxy#readme",
   "dependencies": {
-    "redrouter": "^0.1.0",
-    "redrouter.agent.ssh-proxy": "^0.1.0",
-    "redrouter.agent.wetty": "^0.1.1",
-    "redrouter.backend.etcd": "^0.1.0",
-    "redrouter.middleware.docker": "^0.1.0",
-    "redrouter.resolver.ssh": "^0.1.0"
+    "redrouter": "^0.3.0",
+    "redrouter.agent.ssh": "^0.3.0",
+    "redrouter.agent.xterm": "^0.3.0",
+    "redrouter.backend.etcd": "^0.3.0",
+    "redrouter.middleware.docker": "^0.3.0",
+    "redrouter.resolver.ssh": "^0.3.0"
   }
 }
