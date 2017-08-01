@@ -23,7 +23,14 @@ var middleware_docker = require('redrouter.middleware.docker');
 var proxy = new redrouter({
   backend : {
     constructor: backend_etcd,
-    options: options.etcd_conf
+    options: {
+        etcd_host : options.etcd_conf.etcd_host,
+        etcd_conn_options : {
+          key : fs.readFileSync(options.etcd_conf.docker_args.key),
+          cert : fs.readFileSync(options.etcd_conf.docker_args.cert),
+          cacert : fs.readFileSync(options.etcd_conf.docker_args.cacert)
+        }
+    }
   },
   resolvers: [
     {
@@ -40,7 +47,11 @@ var proxy = new redrouter({
       constructor: middleware_docker,
       options: {
         docker_url : options.docker_conf.docker_url,
-        docker_args : _docker_args
+        docker_args : {
+          key : fs.readFileSync(options.docker_conf.docker_args.key),
+          cert : fs.readFileSync(options.docker_conf.docker_args.cert),
+          cacert : fs.readFileSync(options.docker_conf.docker_args.cacert)
+        }
       }
     }
   ],
