@@ -6,9 +6,9 @@ RUN apk update && \
     apk add git
 
 # Copy Source
-COPY ./src/ /usr/src/app
+COPY ./src/ /usr/src/app/
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/
 
 # Install App
 RUN mkdir -p /usr/lib/tuxlab && \

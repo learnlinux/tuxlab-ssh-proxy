@@ -11,7 +11,7 @@ var options = JSON.parse(fs.readFileSync('/usr/lib/tuxlab/settings.json'));
 
 // Import RedRouter Components
 var backend_etcd = require('redrouter.backend.etcd');
-var agent_ssh = require('redrouter.agent.ssh-proxy');
+var agent_ssh = require('redrouter.agent.ssh');
 var agent_xterm = require('redrouter.agent.xterm');
 var resolver_ssh = require('redrouter.resolver.ssh');
 var middleware_docker = require('redrouter.middleware.docker');
