@@ -7,7 +7,7 @@ var fs = require('fs');
 
 // Import RedRouter Core
 var redrouter = require('redrouter').create;
-var options = JSON.parse(fs.readFileSync('/root/settings.json'));
+var options = JSON.parse(fs.readFileSync('/usr/lib/tuxlab/settings.json'));
 
 // Import RedRouter Components
 var backend_etcd = require('redrouter.backend.etcd');
@@ -28,8 +28,9 @@ if (_docker_args.cacert != undefined) { _docker_args.cacert = fs.readFileSync(op
 
 var proxy = new redrouter({
   ssl : {
-    key : fs.readFileSync('/root/host.pem'),
-    cert : fs.readFileSync('/root/cert.pem')
+    key : fs.readFileSync('/usr/lib/tuxlab/ssl/host.pem'),
+    cert : fs.readFileSync('/usr/lib/tuxlab/ssl/cert.pem'),
+    ca : fs.readFileSync('/usr/lib/tuxlab/ssl/ca.pem')
   },
   backend : {
     constructor: backend_etcd,
