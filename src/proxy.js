@@ -20,18 +20,7 @@ var middleware_docker = require('redrouter.middleware.docker');
   Define a RedRouter Instance
 */
 
-var _docker_args = options.docker_conf.docker_args
-
-if (_docker_args.cert != undefined) { _docker_args.cert = fs.readFileSync(options.docker_conf.docker_args.cert); }
-if (_docker_args.key != undefined) { _docker_args.key = fs.readFileSync(options.docker_conf.docker_args.key); }
-if (_docker_args.cacert != undefined) { _docker_args.cacert = fs.readFileSync(options.docker_conf.docker_args.cacert); }
-
 var proxy = new redrouter({
-  ssl : {
-    key : fs.readFileSync('/usr/lib/tuxlab/ssl/host.pem'),
-    cert : fs.readFileSync('/usr/lib/tuxlab/ssl/cert.pem'),
-    ca : fs.readFileSync('/usr/lib/tuxlab/ssl/ca.pem')
-  },
   backend : {
     constructor: backend_etcd,
     options: options.etcd_conf
