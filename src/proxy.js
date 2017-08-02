@@ -28,7 +28,7 @@ var proxy = new redrouter({
         etcd_conn_options : {
           key : fs.readFileSync(options.etcd_conf.etcd_conn_opts.key),
           cert : fs.readFileSync(options.etcd_conf.etcd_conn_opts.cert),
-          cacert : fs.readFileSync(options.etcd_conf.etcd_conn_opts.cacert)
+          ca : fs.readFileSync(options.etcd_conf.etcd_conn_opts.cacert)
         }
     }
   },
