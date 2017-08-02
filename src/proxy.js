@@ -62,7 +62,11 @@ var proxy = new redrouter({
     },
     {
       constructor: agent_ssh,
-      options: options.ssh_conf
+      options: {
+        host: options.ssh_conf.host,
+        port: options.ssh_conf.port,
+        key: fs.readFileSync(options.ssh_conf.key)
+      }
     }
   ]
 });
