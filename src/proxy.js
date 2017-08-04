@@ -28,7 +28,7 @@ var proxy = new redrouter({
         etcd_conn_opts : {
           key : fs.readFileSync(options.etcd_conf.etcd_conn_opts.key),
           cert : fs.readFileSync(options.etcd_conf.etcd_conn_opts.cert),
-          ca : fs.readFileSync(options.etcd_conf.etcd_conn_opts.cacert)
+          ca : fs.readFileSync(options.etcd_conf.etcd_conn_opts.ca)
         }
     }
   },
@@ -46,11 +46,13 @@ var proxy = new redrouter({
     {
       constructor: middleware_docker,
       options: {
-        docker_url : options.docker_conf.docker_url,
         docker_args : {
+          protocol: options.docker_conf.docker_args.protocol,
+          host: options.docker_conf.docker_args.host,
+          port: options.docker_conf.docker_args.port,
           key : fs.readFileSync(options.docker_conf.docker_args.key),
           cert : fs.readFileSync(options.docker_conf.docker_args.cert),
-          cacert : fs.readFileSync(options.docker_conf.docker_args.cacert)
+          ca : fs.readFileSync(options.docker_conf.docker_args.ca)
         }
       }
     }
