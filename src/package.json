@@ -26,8 +26,10 @@
     "redrouter": "^0.3.0",
     "redrouter.agent.ssh": "^0.3.0",
     "redrouter.agent.xterm": "^0.3.0",
+    "redrouter.agent.http": "^0.3.0",
     "redrouter.backend.etcd": "^0.3.0",
     "redrouter.middleware.docker": "^0.3.0",
-    "redrouter.resolver.ssh": "^0.3.0"
+    "redrouter.resolver.ssh": "^0.3.0",
+    "redrouter.resolver.http": "^0.3.0"
   }
 }

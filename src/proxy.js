@@ -12,7 +12,9 @@ var options = JSON.parse(fs.readFileSync('/usr/lib/tuxlab/settings.json'));
 // Import RedRouter Components
 var backend_etcd = require('redrouter.backend.etcd');
 var agent_ssh = require('redrouter.agent.ssh');
+var agent_ssh = require('redrouter.agent.http');
 var agent_xterm = require('redrouter.agent.xterm');
+var agent_xterm = require('redrouter.agent.http');
 var resolver_ssh = require('redrouter.resolver.ssh');
 var middleware_docker = require('redrouter.middleware.docker');
 
@@ -33,6 +35,9 @@ var proxy = new redrouter({
     }
   },
   resolvers: [
+    {
+      constructor: resolver_http
+    },
     {
       constructor: resolver_ssh,
       options: {
@@ -66,6 +71,13 @@ var proxy = new redrouter({
         host: options.ssh_conf.host,
         port: options.ssh_conf.port,
         key: fs.readFileSync(options.ssh_conf.key)
+      }
+    },
+    {
+      constructor: agent_http,
+      options: {
+        host: 'localhost',
+        port: 3000
       }
     }
   ]
