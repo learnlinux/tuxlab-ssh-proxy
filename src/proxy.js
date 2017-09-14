@@ -36,9 +36,6 @@ var proxy = new redrouter({
   },
   resolvers: [
     {
-      constructor: resolver_http
-    },
-    {
       constructor: resolver_ssh,
       options: {
         defaults: {
