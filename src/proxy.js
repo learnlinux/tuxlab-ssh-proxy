@@ -24,7 +24,7 @@ var middleware_docker = require('redrouter.middleware.docker');
 
 // Determine Backend Options
   var backend_options = {
-    etcd_hosts : options.etcd_conf.etcd_hosts;
+    etcd_hosts : options.etcd_conf.etcd_hosts
   }
 
   if(typeof options.etcd_conf.etcd_conn_opts !== 'undefined'){
