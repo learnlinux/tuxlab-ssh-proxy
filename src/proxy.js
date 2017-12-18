@@ -22,17 +22,43 @@ var middleware_docker = require('redrouter.middleware.docker');
   Define a RedRouter Instance
 */
 
+// Determine Backend Options
+  var backend_options = {
+    etcd_hosts : options.etcd_conf.etcd_hosts;
+  }
+
+  if(typeof options.etcd_conf.etcd_conn_opts !== 'undefined'){
+    backend_options.etcd_conn_opts = {
+      key : fs.readFileSync(options.etcd_conf.etcd_conn_opts.key),
+      cert : fs.readFileSync(options.etcd_conf.etcd_conn_opts.cert),
+      ca : fs.readFileSync(options.etcd_conf.etcd_conn_opts.ca)
+    }
+  }
+
+// Determine Docker Options
+  var docker_args = {
+    protocol: options.docker_conf.docker_args.protocol,
+    host: options.docker_conf.docker_args.host,
+    port: options.docker_conf.docker_args.port
+  }
+
+  if(typeof options.docker_conf.docker_args.key !== 'undefined'){
+    docker_args.key = fs.readFileSync(options.docker_conf.docker_args.key);
+  }
+
+  if(typeof options.docker_conf.docker_args.cert !== 'undefined'){
+    docker_args.cert = fs.readFileSync(options.docker_conf.docker_args.cert);
+  }
+
+  if(typeof options.docker_conf.docker_args.ca !== 'undefined'){
+    docker_args.ca = fs.readFileSync(options.docker_conf.docker_args.ca);
+  }
+
+
 var proxy = new redrouter({
   backend : {
     constructor: backend_etcd,
-    options: {
-        etcd_hosts : options.etcd_conf.etcd_hosts,
-        etcd_conn_opts : {
-          key : fs.readFileSync(options.etcd_conf.etcd_conn_opts.key),
-          cert : fs.readFileSync(options.etcd_conf.etcd_conn_opts.cert),
-          ca : fs.readFileSync(options.etcd_conf.etcd_conn_opts.ca)
-        }
-    }
+    options: backend_options
   },
   resolvers: [
     {
@@ -51,14 +77,7 @@ var proxy = new redrouter({
     {
       constructor: middleware_docker,
       options: {
-        docker_args : {
-          protocol: options.docker_conf.docker_args.protocol,
-          host: options.docker_conf.docker_args.host,
-          port: options.docker_conf.docker_args.port,
-          key : fs.readFileSync(options.docker_conf.docker_args.key),
-          cert : fs.readFileSync(options.docker_conf.docker_args.cert),
-          ca : fs.readFileSync(options.docker_conf.docker_args.ca)
-        }
+        docker_args : docker_args
       }
     }
   ],
